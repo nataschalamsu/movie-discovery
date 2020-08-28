@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { fetchMovies } from '../../api/discover';
+import DatePicker from '../../components/DatePicker';
+import moment from 'moment';
+import { start } from 'repl';
 
 type Movies = {
   title: string;
@@ -22,7 +25,7 @@ const Home = () => {
 
   const discoverMovies = async (sortBy: string | null) => {
     setLoading(true);
-    const result = await fetchMovies(sortBy);
+    const result = await fetchMovies(sortBy, null, null);
 
     setMovies(result);
     setLoading(false);
@@ -30,8 +33,9 @@ const Home = () => {
 
   const handleSortByBtn = async (e: React.MouseEvent<HTMLButtonElement>) => {
     const { value } = e.currentTarget;
+    const sortedBy = `${value}${order}`;
 
-    const result = await fetchMovies(`${value}${order}`);
+    const result = await fetchMovies(sortedBy, null, null);
     
     setMovies(result);
 
@@ -40,6 +44,14 @@ const Home = () => {
     } else {
       setOrder('asc');
     }
+  };
+
+  const handleDatePicker = async (startDate: any, endDate: any) => {
+    const parseStartDate = moment(startDate).format('YYYY-MM-DD');
+    const parseEndDate = moment(endDate).format('YYYY-MM-DD');
+    const result = await fetchMovies(null, parseStartDate, parseEndDate);
+
+    setMovies(result);
   };
 
   useEffect(() => {
@@ -59,7 +71,7 @@ const Home = () => {
       <button value={SortBy.RELEASE_DATE} onClick={handleSortByBtn}>Release Date</button>
       <button value={SortBy.VOTE_COUNT} onClick={handleSortByBtn}>Vote Count</button>
       <p>Filter by Primary Release Date:</p>
-
+      <DatePicker onChange={handleDatePicker} />
       {movies.map(value => <p>{value.title}</p>)}
     </div>
   );
