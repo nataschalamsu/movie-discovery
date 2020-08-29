@@ -19,6 +19,8 @@ enum SortBy {
   VOTE_COUNT = 'vote_count.',
 };
 
+const IMAGE_BASE_URL = 'http://image.tmdb.org/t/p/w500';
+
 const Home = () => {
   const [loading, setLoading] = useState(false);
   const [movies, setMovies] = useState<Movies[]>([]);
@@ -73,7 +75,15 @@ const Home = () => {
       <button value={SortBy.VOTE_COUNT} onClick={handleSortByBtn}>Vote Count</button>
       <p>Filter by Primary Release Date:</p>
       <DatePicker onChange={handleDatePicker} />
-      {movies.map(value => <p><Link to={`/movie/${value.id}`}>{value.title}</Link></p>)}
+      {movies.map(value => 
+        <div>
+          <img src={`${IMAGE_BASE_URL}${value.poster}`} alt={`${value.title}_movie_poster`}/>
+          <p><Link to={`/movie/${value.id}`}>{value.title}</Link></p>
+          {value.genre.map((g: string) => <span>{g}, </span>)}
+          <p>{value.popularity}</p>
+          <p>{value.description}</p>
+        </div>
+      )}
     </div>
   );
 };

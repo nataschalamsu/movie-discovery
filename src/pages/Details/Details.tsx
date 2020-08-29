@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
+import 'moment-duration-format';
 import { fetchMovieDetails } from '../../api/details';
 
 type ProductionCompanies = {
@@ -53,6 +54,10 @@ const movieObj = {
 
 const IMAGE_BASE_URL = 'http://image.tmdb.org/t/p/w500';
 
+const toCurrency = (amount: number) => {
+  return '$' + amount.toString().replace(/(\d)(?=(\d{3})+(\.(\d){0,2})*$)/g, '$1,');
+};
+
 const Details = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState<Movie>(movieObj);
@@ -92,13 +97,16 @@ const Details = () => {
   return (
     <div>
       <h2>{title}</h2>
-      {/* <span>{moment(runtime).format()}</span> */}
+      <span>{moment.duration(runtime, 'minutes').format("h [hours] m [minute]")}</span>
       <span>{release_date}</span>
-      <span>{popularity}</span>
       {genres.map((genre: any) => <span>{genre.name}</span>)}
-
-      <p>{overview}</p>
+      <span>{popularity}</span>
+      <span>Vote Average: {vote_average}</span>
+      <span>Vote Count: {vote_count}</span>
+      <p>{toCurrency(revenue)}</p>
+      {spoken_languages.map((lang: any) => <span>{lang.name}</span>)}
       <a href={homepage}>Go To Movie Homepage</a>
+      <p>{overview}</p>
       <img src={`${IMAGE_BASE_URL}${poster_path}`} alt="movie-poster"/>
       <img src={`${IMAGE_BASE_URL}${backdrop_path}`} alt="movie-poster"/>
     </div>
