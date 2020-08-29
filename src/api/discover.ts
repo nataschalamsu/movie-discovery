@@ -21,6 +21,7 @@ export const fetchMovies = async (sortBy: string | null, startDate: string | nul
   const genres = await fetchMovieGenres();
 
   const results = movies.map((value: any) => ({
+    id: value.id,
     title: value.title,
     poster: value.poster_path,
     description: value.overview,

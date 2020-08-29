@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import moment from 'moment';
 import { fetchMovies } from '../../api/discover';
 import DatePicker from '../../components/DatePicker';
-import moment from 'moment';
-import { start } from 'repl';
+import { Link } from 'react-router-dom';
 
 type Movies = {
+  id: string;
   title: string;
   poster: string;
   description: string;
@@ -72,7 +73,7 @@ const Home = () => {
       <button value={SortBy.VOTE_COUNT} onClick={handleSortByBtn}>Vote Count</button>
       <p>Filter by Primary Release Date:</p>
       <DatePicker onChange={handleDatePicker} />
-      {movies.map(value => <p>{value.title}</p>)}
+      {movies.map(value => <p><Link to={`/movie/${value.id}`}>{value.title}</Link></p>)}
     </div>
   );
 };
