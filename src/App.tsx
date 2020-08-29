@@ -10,13 +10,13 @@ function App() {
       <Switch>
         <Route
           exact
-          path="/"
-          component={Home}
+          path="/movie/:id"
+          component={Details}
         />
         <Route
           exact
-          path="/details"
-          component={Details}
+          path="/"
+          component={Home}
         />
       </Switch>
     </BrowserRouter>
