@@ -22,6 +22,9 @@ const MovieCard: React.FC<MovieCardProps> = ({ id, poster, title, genre, popular
         <span>{genre.join(', ')}</span>
         <p>{popularity}</p>
         <p className="movie_desc">{truncateString(description)}</p>
+        <div className="overlay">
+          Read More
+        </div>
       </div>
     </Link>
   );
