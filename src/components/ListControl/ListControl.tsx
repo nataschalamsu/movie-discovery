@@ -1,5 +1,6 @@
 import React from 'react';
-import DatePicker from './DatePicker';
+import DatePicker from '../DatePicker/DatePicker';
+import './ListControl.styles.css';
 
 enum SortBy {
   POPULARITY = 'popularity.',

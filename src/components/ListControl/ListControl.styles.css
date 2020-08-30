@@ -1,0 +1,38 @@
+.list_control {
+  display: flex;
+  padding: 1rem;
+  flex-direction: column;
+}
+
+.list_control p {
+ font-size: small;
+}
+
+.order {
+ font-weight: bold;
+ font-size: 1rem;
+ text-transform: uppercase;
+}
+
+.control_btn {
+ padding: 1rem;
+ color: #49494d;
+ background-color: #fff;
+ border: 1px solid #49494d;
+ border-radius: 5px;
+ margin-right: 1rem;
+ cursor: pointer;
+ outline: none;
+}
+
+.control_btn:hover {
+ background-color: #df6747;
+}
+
+@media (min-width: 675px) {
+  .list_control {
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid lightgray;
+  }
+}

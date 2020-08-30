@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import { fetchMovies } from '../../api/discover';
 import './Home.styles.css';
-import MovieCard from '../../components/MovieCard';
-import ListControl from '../../components/ListControl';
-import Loading from '../../components/Loading/Loading';
+import { ListControl, MovieCard } from '../../components';
 
 type Movies = {
   id: string;
@@ -62,10 +60,6 @@ const Home = () => {
     setOrder('asc');
   }, []);
 
-  if (loading) return (
-    <Loading />
-  );
-
   return (
     <div className="home">
       <header>
@@ -78,6 +72,7 @@ const Home = () => {
           order={order}
         />
         <div className="movie_list">
+          {loading && (<h2>Loading...</h2>)}
           {movies.map(value => 
             <MovieCard
               id={value.id}

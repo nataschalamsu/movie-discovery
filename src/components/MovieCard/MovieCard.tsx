@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { IMAGE_BASE_URL, truncateString} from '../pages/utils';
-import posterPlaceholder from '../assets/image-placeholder/movie_poster_placeholder.jpg';
+import { IMAGE_BASE_URL, truncateString} from '../../pages/utils';
+import posterPlaceholder from '../../assets/image-placeholder/movie_poster_placeholder.jpg';
+import './MovieCard.styles.css';
 
 type MovieCardProps = {
   id: string;
@@ -20,11 +21,8 @@ const MovieCard: React.FC<MovieCardProps> = ({ id, poster, title, genre, popular
         <img src={posterPath} alt={`${title}_movie_poster`}/>
         <p className="movie_title">{title}</p>
         <span>{genre.join(', ')}</span>
-        <p>{popularity}</p>
+        <p className="popular"><span id="star">&#9733;</span> {popularity}</p>
         <p className="movie_desc">{truncateString(description)}</p>
-        <div className="overlay">
-          Read More
-        </div>
       </div>
     </Link>
   );
