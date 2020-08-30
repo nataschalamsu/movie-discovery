@@ -5,6 +5,8 @@ import 'moment-duration-format';
 import { fetchMovieDetails } from '../../api/details';
 import './Details.styles.css';
 import { IMAGE_BASE_URL, toCurrency } from '../utils';
+import posterPlaceholder from '../../assets/image-placeholder/movie_poster_placeholder.jpg';
+import backdropPlaceholder from '../../assets/image-placeholder/backdrop_placeholder.jpg';
 
 type ProductionCompanies = {
   name: string;
@@ -55,7 +57,7 @@ const movieObj = {
 
 const detailsContainerStyle = (backdrop: string) => (
   {
-    backgroundImage: `url(${IMAGE_BASE_URL}/original${backdrop})`,
+    backgroundImage: `url(${backdrop})`,
   }
 );
 
@@ -95,12 +97,15 @@ const Details = () => {
     vote_count,
   } = movie;
 
+  const posterPath = !poster_path ? posterPlaceholder : `${IMAGE_BASE_URL}/w500${poster_path}`;
+  const backdropPath = !backdrop_path ? backdropPlaceholder : `${IMAGE_BASE_URL}/original${backdrop_path}`;
+
   return (
-    <div className="details_container" style={detailsContainerStyle(backdrop_path)}>
+    <div className="details_container" style={detailsContainerStyle(backdropPath)}>
       <div className="movie_details">
         <Link to="/">← Back to Home</Link>
         <a href={homepage}><h1>{title}</h1></a>
-        <img src={`${IMAGE_BASE_URL}/w500${poster_path}`} alt="movie-poster" className="movie_poster"/>
+        <img src={posterPath} alt="movie-poster" className="movie_poster"/>
         <h3>Movie Info</h3> 
         <p className="overview">{overview}</p>
         <div className="details">
