@@ -108,10 +108,10 @@ const Details = () => {
   return (
     <div className="details_container" style={detailsContainerStyle(backdropPath)}>
       <div className="movie_details">
-        <Link to="/">← Back to Home</Link>
+        <Link to="/" className="back_home">← Back to Home</Link>
         {loading && <h2>Loading...</h2>}
         {errorMsg && <h2>{errorMsg}</h2> }
-        <a href={homepage}><h1>{title}</h1></a>
+        <a href={homepage} className="movie_homepage"><h1 className="title">{title}</h1></a>
         <img src={posterPath} alt="movie-poster" className="movie_poster"/>
         <h3>Movie Info</h3> 
         <p className="overview">{overview}</p>
