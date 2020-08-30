@@ -1,7 +1,7 @@
 # Discovery Movie
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-A simple website contain list of movies and details about a movie. Built with React JS, Typescript, CSS and using [The Movie Database API] (https://www.themoviedb.org/).
+A simple website contain list of movies and details about a movie. Built with React JS, Typescript, CSS and using [The Movie Database API](https://www.themoviedb.org/).
 
 ## Getting Started
 
