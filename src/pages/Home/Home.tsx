@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import { fetchMovies } from '../../api/discover';
-import DatePicker from '../../components/DatePicker';
-import { Link } from 'react-router-dom';
+import './Home.styles.css';
+import { ListControl, MovieCard } from '../../components';
 
 type Movies = {
   id: string;
@@ -18,8 +18,6 @@ enum SortBy {
   RELEASE_DATE = 'release_date.',
   VOTE_COUNT = 'vote_count.',
 };
-
-const IMAGE_BASE_URL = 'http://image.tmdb.org/t/p/w500';
 
 const Home = () => {
   const [loading, setLoading] = useState(false);
@@ -62,28 +60,32 @@ const Home = () => {
     setOrder('asc');
   }, []);
 
-  if (loading) return (
-    <div>Loading...</div>
-  );
-
   return (
-    <div>
-      <h1>Home</h1>
-      <p>Sort by:</p>
-      <button value={SortBy.POPULARITY} onClick={handleSortByBtn}>Popularity</button>
-      <button value={SortBy.RELEASE_DATE} onClick={handleSortByBtn}>Release Date</button>
-      <button value={SortBy.VOTE_COUNT} onClick={handleSortByBtn}>Vote Count</button>
-      <p>Filter by Primary Release Date:</p>
-      <DatePicker onChange={handleDatePicker} />
-      {movies.map(value => 
-        <div>
-          <img src={`${IMAGE_BASE_URL}${value.poster}`} alt={`${value.title}_movie_poster`}/>
-          <p><Link to={`/movie/${value.id}`}>{value.title}</Link></p>
-          {value.genre.map((g: string) => <span>{g}, </span>)}
-          <p>{value.popularity}</p>
-          <p>{value.description}</p>
+    <div className="home">
+      <header>
+        <h1>discovery movie</h1>
+      </header>
+      <div className="movies">
+        <ListControl
+          handleDatePicker={handleDatePicker}
+          handleSortByBtn={handleSortByBtn}
+          order={order}
+        />
+        <div className="movie_list">
+          {loading && (<h2>Loading...</h2>)}
+          {movies.map(value => 
+            <MovieCard
+              id={value.id}
+              title={value.title}
+              poster={value.poster}
+              genre={value.genre}
+              popularity={value.popularity}
+              description={value.description}
+            />
+          )}
         </div>
-      )}
+      </div>
+      <footer>2020</footer>
     </div>
   );
 };

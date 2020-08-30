@@ -1,0 +1,53 @@
+.details_container {
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+}
+
+.movie_details {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 900px;
+  background-color: rgba(0, 0, 0, 0.9);
+  padding: 2rem;
+}
+
+.movie_details a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.movie_details h1 {
+  color: white;
+  border-bottom: 5px solid #b42f32;
+}
+
+.movie_details h1:hover {
+  color: #df6747;
+}
+
+.movie_details h3 {
+  text-align: center;
+  text-transform: uppercase;
+  background-color: #b42f32;
+}
+
+.movie_poster {
+  display: block;
+  margin: 0 auto;
+  width: 90%;
+  max-width: 500px;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 675px) {
+  .movie_details {
+    width: 90%;
+  }
+}

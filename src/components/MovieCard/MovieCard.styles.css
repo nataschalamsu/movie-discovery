@@ -1,0 +1,49 @@
+.movie_card {
+  border-radius: 10px;
+  padding: 1rem;
+  width: 100%;
+  height: auto;
+  margin-bottom: 1rem;
+  border: 1px solid #dbdfe2;
+}
+
+.movie_card:hover {
+  background-color: #b42f32;
+  color: #e3e3cd;
+}
+
+.movie_card img {
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+}
+
+.movie_title {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.movie_desc {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.popular {
+  font-weight: 700;
+}
+
+#star {
+  color: #df6747;
+}
+
+@media (min-width: 675px) {
+  .movie_card {
+    width: 225px;
+    height: 40rem;
+    border: none;
+  }
+
+  .movie_card img {
+    width: 100%;
+  }
+}
