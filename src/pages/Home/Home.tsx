@@ -23,36 +23,48 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const [movies, setMovies] = useState<Movies[]>([]);
   const [order, setOrder] = useState('desc');
+  const [errorMsg, setErrorMsg] = useState('');
 
   const discoverMovies = async (sortBy: string | null) => {
     setLoading(true);
-    const result = await fetchMovies(sortBy, null, null);
-
-    setMovies(result);
-    setLoading(false);
+    
+    try {
+      const result = await fetchMovies(sortBy, null, null);
+      setMovies(result);
+      setLoading(false);
+    } catch(err) {
+      setErrorMsg(err.status_message);
+      setLoading(false);
+    }
   };
 
   const handleSortByBtn = async (e: React.MouseEvent<HTMLButtonElement>) => {
     const { value } = e.currentTarget;
     const sortedBy = `${value}${order}`;
 
-    const result = await fetchMovies(sortedBy, null, null);
-    
-    setMovies(result);
-
-    if (order === 'asc') {
-      setOrder('desc')
-    } else {
-      setOrder('asc');
+    try {
+      const result = await fetchMovies(sortedBy, null, null);
+      setMovies(result);
+      if (order === 'asc') {
+        setOrder('desc')
+      } else {
+        setOrder('asc');
+      }
+    } catch(err) {
+      setErrorMsg(err.status_message);
     }
   };
 
   const handleDatePicker = async (startDate: any, endDate: any) => {
     const parseStartDate = moment(startDate).format('YYYY-MM-DD');
     const parseEndDate = moment(endDate).format('YYYY-MM-DD');
-    const result = await fetchMovies(null, parseStartDate, parseEndDate);
-
-    setMovies(result);
+    
+    try {
+      const result = await fetchMovies(null, parseStartDate, parseEndDate);
+      setMovies(result);
+    } catch(err) {
+      setErrorMsg(err.status_message);
+    }
   };
 
   useEffect(() => {
@@ -73,6 +85,7 @@ const Home = () => {
         />
         <div className="movie_list">
           {loading && (<h2>Loading...</h2>)}
+          {errorMsg && (<h2>{errorMsg}</h2>)}
           {movies.map(value => 
             <MovieCard
               id={value.id}

@@ -65,20 +65,25 @@ const Details = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState<Movie>(movieObj);
   const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
   const movieDetails = async () => {
     setLoading(true);
-    const results = await fetchMovieDetails(id);
+    
+    try {
+      const results = await fetchMovieDetails(id);
+      setMovie(results);
+      setLoading(false);
+    } catch(err) {
+      setErrorMsg(err.status_message);
+      setLoading(false);
+    }
 
-    setMovie(results);
-    setLoading(false);
   };
 
   useEffect(() => {
     movieDetails();
   }, []);
-
-  if (loading) return <div>Loading...</div>;
 
   const {
     backdrop_path,
@@ -104,6 +109,8 @@ const Details = () => {
     <div className="details_container" style={detailsContainerStyle(backdropPath)}>
       <div className="movie_details">
         <Link to="/">← Back to Home</Link>
+        {loading && <h2>Loading...</h2>}
+        {errorMsg && <h2>{errorMsg}</h2> }
         <a href={homepage}><h1>{title}</h1></a>
         <img src={posterPath} alt="movie-poster" className="movie_poster"/>
         <h3>Movie Info</h3> 
