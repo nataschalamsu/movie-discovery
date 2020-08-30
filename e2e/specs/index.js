@@ -1,8 +1,8 @@
 import { load, getTitle } from "../pageObjects/index";
 
-describe("React App", () => {
-  it("should be titled 'React App'", async () => {
+describe("Discovery Movie", () => {
+  it("should be titled 'Discovery Movie'", async () => {
     await load();
-    expect(await getTitle()).toBe("React App");
+    expect(await getTitle()).toBe("Discovery Movie");
   });
 });

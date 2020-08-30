@@ -19,9 +19,9 @@ const ListControl: React.FC<ListControlProps> = ({ handleDatePicker, handleSortB
     <div className="list_control">
       <div className="sort_ctrl">
         <p>Sort by:</p>
-        <button className="control_btn" value={SortBy.POPULARITY} onClick={handleSortByBtn}>Popularity</button>
-        <button className="control_btn" value={SortBy.RELEASE_DATE} onClick={handleSortByBtn}>Release Date</button>
-        <button className="control_btn" value={SortBy.VOTE_COUNT} onClick={handleSortByBtn}>Vote Count</button>
+        <button className="control_btn" id="popularity" value={SortBy.POPULARITY} onClick={handleSortByBtn}>Popularity</button>
+        <button className="control_btn" id="release_date" value={SortBy.RELEASE_DATE} onClick={handleSortByBtn}>Release Date</button>
+        <button className="control_btn" id="vote_count" value={SortBy.VOTE_COUNT} onClick={handleSortByBtn}>Vote Count</button>
         <p className="order">{order === 'asc' ? 'desc' : 'asc'  }</p>
       </div>
       <div className="filter_ctrl">

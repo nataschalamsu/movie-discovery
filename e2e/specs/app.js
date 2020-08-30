@@ -1,16 +1,18 @@
-import { getIntroText, getLinkText } from "../pageObjects/app";
+import { getHeaderTitle, clickPopularityBtn } from "../pageObjects/app";
 import { load } from "../pageObjects/index";
 
-describe("React App", () => {
+describe("Discovery Movie", () => {
   beforeEach(async () => {
     await load();
   });
 
-  it("should show the correct intro", async () => {
-    expect(await getIntroText()).toBe("Edit src/App.js and save to reload.");
+  it("should show the correct header title", async () => {
+    expect(await getHeaderTitle()).toBe("discovery movie");
   });
 
-  it("should show the correct link", async () => {
-    expect(await getLinkText()).toBe("Learn React");
+  it("should sorted by popularity", async () => {
+    expect(
+      await clickPopularityBtn()
+    );
   });
 });

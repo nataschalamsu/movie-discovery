@@ -1,14 +1,15 @@
 import { root } from './index';
 
-const introSelector = '.App-header > p';
-const linkSelector = '.App-link';
+const headerTitleSelector = '.header_title';
+const popularityBtnSelector = '#popularity';
+const releaseDateBtnSelector = '#release_date';
+const voteCountBtnSelector = '#vote_count';
 
-export const getIntroText = async () => {
+export const getHeaderTitle = async () => {
   const app = await root();
-  return await app.$eval(introSelector, el => el.innerText);
-}
+  return await app.$eval(headerTitleSelector, el => el.innerText.toLowerCase());
+};
 
-export const getLinkText = async () => {
-  const app = await root();
-  return await app.$eval(linkSelector, el => el.innerText);
-}
+export const clickPopularityBtn = async () => {
+  return await page.click(popularityBtnSelector);
+};
