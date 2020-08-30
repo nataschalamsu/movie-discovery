@@ -75,7 +75,7 @@ const Home = () => {
   return (
     <div className="home">
       <header>
-        <h1>discovery movie</h1>
+        <h1 className="header_title">discovery movie</h1>
       </header>
       <div className="movies">
         <ListControl
