@@ -13,13 +13,17 @@ Installation:
 
 `npm install`  
 
+To Run Test Suite:
+
+`npm run e2e`
+
 To Start Server:
 
 `npm start`  
 
 To Visit App:
 
-`localhost:3000/`
+`localhost:3000`
 
 ## Learn More
 
